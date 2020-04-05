@@ -67,3 +67,8 @@ def all_locals():
     else:
         all_videos = mongo.db.Videos.find()
     return render_template("videos.html", title="Sac Locals", videos=all_videos)
+
+
+
+if __name__ == '__main__':
+    app.run()
