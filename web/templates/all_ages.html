@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }} </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link href="https://fonts.googleapis.com/css?family=Frijole|Open+Sans|Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sac.css" type="text/css" media="screen" charset="utf-8"/>
+    <!-- Add fancybox3 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <meta name = 'description' content = 'All Shows upcoming music shows listings. Watch music videos and discover new Sacramento artists and support the Sactown music scene. Catch an upcoming touring artist on their stop in Sac.' />
+</head>
+<body>
+    <div class="page">
+    <header class="hero">
+        <nav class="hero__navbar">
+            <a class = "hero__link active" href="#">Shows</a>
+            <a class= "hero__link" href="#">Social</a>
+            <a class="hero__link" href="#">About</a>
+            <a class="hero__link" href="#">Local</a>
+        </nav>
+        <div class="hero__title">Sactown Lowdown</div>
+    </header>
+    <div class="container">
+        <div class="container__title">All Ages - Upcoming Sactown Music Shows</div>
+        <div class="container__grid">
+            {% for event in events %}
+            <div class="container__grid__col1">{{event.date}} {{event["youtube snippet"]}}</div>
+            <div class="container__grid__col2">{{event.performers}},{{event.venue}},{{event.ages}},{{event.price}}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class='timeline'> <a class="twitter-timeline" data-width="100%" data-height="600" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</div>
+</body>
+</html>
