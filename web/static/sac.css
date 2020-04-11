@@ -249,6 +249,11 @@ a  {
     margin-top: 25%;
 }
 
+#twitter-widget-0 {
+  min-width: 100%;
+}
+
+
 .sidebar__menu__button {
     color: #85144b;
     height: 30px;
