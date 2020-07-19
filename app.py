@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, json
 from pymongo import MongoClient
 from flask import Flask
 from flask_pymongo import PyMongo
@@ -27,15 +27,13 @@ def index():
         all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', -1)
     else:
         all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', 1)
-    return render_template('index.html', title='All shows in Sacramento, Ca', events=all_events)
-
+    return render_template('index.html', title='All shows in Sacramento, Ca', events=jsonify(all_events))
 
 
 @app.route("/search")
 def search_by_date():
     date_str = request.values.get("date")
     date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-
     query = { "date": date }
     search_results = mongo.db.Events.find(query)
     print ("Number of results: ", search_results.count())
