@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, request, url_for, session, json
+from flask import Flask, render_template, redirect, request, url_for, session
+from flask import jsonify
 from pymongo import MongoClient
 from flask import Flask
 from flask_pymongo import PyMongo
@@ -27,7 +28,7 @@ def index():
         all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', -1)
     else:
         all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', 1)
-    return render_template('index.html', title='All shows in Sacramento, Ca', events=jsonify(all_events))
+    return render_template('index.html', title='All shows in Sacramento, Ca', events=all_events)
 
 
 @app.route("/search")
