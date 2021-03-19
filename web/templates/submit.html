@@ -15,24 +15,19 @@
 <div class="page">
 	<header class="hero">
 		<nav class="hero__navbar">
-			<a class = "hero__link active" href="#">Shows</a>
-			<a class= "hero__link" href="#">Social</a>
-			<a class="hero__link" href="#">About</a>
-			<a class="hero__link" href="#">Local</a>
+			<a class = "hero__link active" href="/">Shows</a>
+			<a class= "hero__link" href="https://www.instagram.com/sactownlowdown/" target="_blank">Social</a>
+			<a class="hero__link" href="/submit" target="_blank">Submit A Show</a>
+			<a class="hero__link" href="/sac-locals">Local</a>
 		</nav>
 		<div class="hero__title">Sactown Lowdown</div>
 	</header>
 	<div class="container">
-		<div class="container__title">Upcoming Sactown Music Shows</div>
-		<div class="container__grid">
-			{% for event in events %}
-			<div class="container__grid__col1">{{event.date}} {{event["youtube snippet"]}}</div>
-			<div class="container__grid__col2">{{event.performers}},{{event.venue}},{{event.ages}},{{event.price}}</div>
-        	{% endfor %}
-		</div>
+		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" width="80%" height="1963" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 	</div>
-	<div class='timeline'> <a class="twitter-timeline" data-width="100%" data-height="600" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
-	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<div id="sidebar">
+		<div class='timeline'> <a class="twitter-timeline" data-width="100%" data-height="600" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
 </body>

@@ -56,6 +56,9 @@ def all_free_page():
     return render_template("index.html", title="All free shows in Sacramento, Ca", events=free_events)
 
 
+@app.route("/submit")
+def submit_event():
+    return render_template("submit.html", title="Submit a show to Sactown Lowdown listings")
 @app.route("/sac-locals")
 def all_locals():
     query = request.args.get("args", "")
