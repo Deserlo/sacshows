@@ -21,12 +21,14 @@ mongo = PyMongo(app)
 @app.route("/")
 def index():
     query = request.args.get("args", "")
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=1)
     if query == "asc":
-        all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', 1)
+        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     elif query == "desc":
-        all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', -1)
+        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', -1)
     else:
-        all_events = mongo.db.Events.find({'date': { '$gte': datetime.datetime.now()}}).sort('date', 1)
+        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title='All shows in Sacramento, Ca', events=all_events)
 
 
