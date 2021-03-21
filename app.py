@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 def index():
     query = request.args.get("args", "")
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=1)
+    yesterday = today - datetime.timedelta(days=1.5)
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     elif query == "desc":
