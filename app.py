@@ -44,15 +44,19 @@ def search_by_date():
 
 @app.route("/all-ages")
 def all_ages_page():
-    query = { "ages": "all ages", 'date': { '$gte': datetime.datetime.now()}}
-    all_ages_events = mongo.db.Events.find(query)
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=1.5)
+    query = { "ages": "all ages", 'date': { '$gte': yesterday}}
+    all_ages_events = mongo.db.Events.find(query).sort('date', 1)
     return render_template("index.html", title="All ages shows in Sacramento, Ca", events=all_ages_events)
 
 
 @app.route("/all-free")
 def all_free_page():
-    query = { "price": "free", 'date': { '$gte': datetime.datetime.now()}}
-    free_events = mongo.db.Events.find(query)
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=1.5)
+    query = { "price": "free", 'date': { '$gte': yesterday}}
+    free_events = mongo.db.Events.find(query).sort('date', 1)
     return render_template("index.html", title="All free shows in Sacramento, Ca", events=free_events)
 
 
