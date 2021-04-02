@@ -37,10 +37,8 @@ def index():
 def search_by_date():
     date_str = request.values.get("date")
     date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-
     query = { "date": date }
     search_results = mongo.db.Events.find(query)
-    print ("Number of results: ", search_results.count())
     return render_template("index.html", title="Shows result Sactown Lowdown", events=search_results)
 
 
@@ -61,16 +59,17 @@ def all_free_page():
 @app.route("/submit")
 def submit_event():
     return render_template("submit.html", title="Submit a show to Sactown Lowdown listings")
+
+
 @app.route("/sac-locals")
 def all_locals():
     query = request.args.get("args", "")
-    print (query)
     if query == "asc":
         all_videos = mongo.db.Videos.find().sort('artist', 1)
     elif query == "desc":
         all_videos = mongo.db.Videos.find().sort('artist', -1)
     else:
-        all_videos = mongo.db.Videos.find()
+        all_videos = mongo.db.Videos.find().sort('artist', 1)
     return render_template("videos.html", title="Sac Locals", videos=all_videos)
 
 

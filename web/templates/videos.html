@@ -213,16 +213,17 @@ function closeNav() {
     <div class="hero__title">Sactown Lowdown</div>
   </header>
   <div class="container">
-        <div class="container__title">Local Sacramento Artist Videos</div>
         <ul class="container__menubar">
-          <li><div class= "container__menubar__btn"><a href="/sac-locals?args=asc">SORT BY ARTIST ASC</a></div></li>
-          <li><div class= "container__menubar__btn"><a href="/sac-locals?args=desc">SORT BY ARTIST DESC</a></div></li>
-          </ul>        
+          <button type="button" class="btn btn-light"><a href="/">HOME</a></button>
+          <button type="button" class="btn btn-light"><a href="/sac-locals?args=asc">SORT ASC</a></button>
+          <button type="button" class="btn btn-light"><a href="/sac-locals?args=desc">SORT DESC</a></button>
+        </ul>
+        <div class="container__title">Local Sacramento Artist Videos</div>        
         <div class="container__grid">
             {% for video in videos %}
             <div class="container__grid__col1">
                 <a data-fancybox href="https://www.youtube.com/watch?v={{video['video_id']}}">
-                <img src="https://i.ytimg.com/vi/{{video['video_id']}}/mqdefault.jpg" alt="youtube thumbnail" width="50%"></a>
+                <img src="https://i.ytimg.com/vi/{{video['video_id']}}/mqdefault.jpg" alt="youtube thumbnail" width="45%"></a>
               </div>
               <div class="container__grid__col2">{{video["artist"]}}<br>{{video["video_title"]}}</div>
             {% endfor %}
@@ -271,15 +272,6 @@ function closeNav() {
       </div>
     </div>
     <hr>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-sm-6 col-xs-12">
-        <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
-     <a href="#">Sactown Lowdown</a>.
-        </p>
-      </div>
-    </div>
   </div>
 </footer>
 </div>
