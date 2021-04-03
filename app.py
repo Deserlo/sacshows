@@ -23,13 +23,16 @@ def index():
     query = request.args.get("args", "")
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1.5)
+    title = "Showing Upcoming Shows By Date In Sacramento, Ca"
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
+        title = "Showing Earliest Upcoming Shows In Sacramento, Ca"
     elif query == "desc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', -1)
+        title = "Showing Latest Upcoming Shows In Sacramento, Ca"
     else:
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
-    return render_template('index.html', title='All shows in Sacramento, Ca', events=all_events)
+    return render_template('index.html', title=title, events=all_events)
 
 
 
@@ -39,7 +42,7 @@ def search_by_date():
     date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
     query = { "date": date }
     search_results = mongo.db.Events.find(query)
-    return render_template("index.html", title="Shows result Sactown Lowdown", events=search_results)
+    return render_template("index.html", title="Shows on " + date_str + " In Sacramento, Ca", events=search_results)
 
 
 @app.route("/all-ages")
@@ -48,7 +51,7 @@ def all_ages_page():
     yesterday = today - datetime.timedelta(days=1.5)
     query = { "ages": "all ages", 'date': { '$gte': yesterday}}
     all_ages_events = mongo.db.Events.find(query).sort('date', 1)
-    return render_template("index.html", title="All ages shows in Sacramento, Ca", events=all_ages_events)
+    return render_template("index.html", title="All Ages Shows In Sacramento, Ca", events=all_ages_events)
 
 
 @app.route("/all-free")
@@ -57,7 +60,7 @@ def all_free_page():
     yesterday = today - datetime.timedelta(days=1.5)
     query = { "price": "free", 'date': { '$gte': yesterday}}
     free_events = mongo.db.Events.find(query).sort('date', 1)
-    return render_template("index.html", title="All free shows in Sacramento, Ca", events=free_events)
+    return render_template("index.html", title="Free Shows In Sacramento, Ca", events=free_events)
 
 
 @app.route("/submit")
