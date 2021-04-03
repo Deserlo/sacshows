@@ -18,8 +18,10 @@ MONGO_URI = os.getenv("MONGO_URI")
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
+    if request.method == "POST":
+        return search_by_date()
     query = request.args.get("args", "")
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1.5)
@@ -39,10 +41,18 @@ def index():
 @app.route("/search")
 def search_by_date():
     date_str = request.values.get("date")
-    date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
-    query = { "date": date }
-    search_results = mongo.db.Events.find(query)
-    return render_template("index.html", title="Shows on " + date_str + " In Sacramento, Ca", events=search_results)
+    if date_str != "":
+        date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+        query = { "date": date }
+        search_results = mongo.db.Events.find(query)
+        return render_template("index.html", title="Shows on " + date_str + " In Sacramento, Ca", events=search_results)
+    else:
+        print("date string empty")
+        title = "Upcoming Shows By Date In Sacramento, Ca"
+        today = datetime.datetime.now()
+        yesterday = today - datetime.timedelta(days=1.5)
+        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
+        return render_template('index.html', title=title, events=all_events)
 
 
 @app.route("/all-ages")
@@ -77,7 +87,7 @@ def all_locals():
         all_videos = mongo.db.Videos.find().sort('artist', -1)
     else:
         all_videos = mongo.db.Videos.find().sort('artist', 1)
-    return render_template("videos.html", title="Sac Locals", videos=all_videos)
+    return render_template("videos.html", title="Sacramento's Local Music Artists", videos=all_videos)
 
 
 
