@@ -23,13 +23,13 @@ def index():
     query = request.args.get("args", "")
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1.5)
-    title = "Showing Upcoming Shows By Date In Sacramento, Ca"
+    title = "Upcoming Shows By Date In Sacramento, Ca"
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
-        title = "Showing Earliest Upcoming Shows In Sacramento, Ca"
+        title = "Earliest Upcoming Shows In Sacramento, Ca"
     elif query == "desc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', -1)
-        title = "Showing Latest Upcoming Shows In Sacramento, Ca"
+        title = "Latest Upcoming Shows In Sacramento, Ca"
     else:
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title=title, events=all_events)
