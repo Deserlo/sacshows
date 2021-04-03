@@ -155,13 +155,14 @@ function closeNav() {
     <div class="hero__title">Sactown Lowdown</div>
   </header>
   <div class="container"> 
+    <div class="container__sticky">
         <ul class="container__menubar">
           <button type="button" class="btn btn-light"><a href="/">ALL SHOWS</a></button>
           <button type="button" class="btn btn-light"><a href="/all-ages">ALL AGES</a></button>
           <button type="button" class="btn btn-light"><a href="/all-free">FREE</a></button>
           <button type="button" class="btn btn-light"><a href="/?args=asc">EARLIEST</a></button>
           <button type="button" class="btn btn-light"><a href="/?args=desc">LATEST</a></button>
-          </ul>
+        </ul>
           <div class="container__submenubar">
             <div class="container__date">
               <div class="row">
@@ -173,10 +174,10 @@ function closeNav() {
                           </form>
                       </div>
                   </div>
-
               </div>
           </div> 
-          </div> 
+        </div>
+      </div> 
         <div class="container__grid">
             {%- for event in events -%} 
               <div class="container__grid__col1">{{event.date.strftime('%a, %b %d %Y')}}<br>

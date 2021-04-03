@@ -3,7 +3,7 @@
 @media only screen and (min-device-width: 320px){
 	
   body { 
-    overflow: auto;
+    /*overflow: auto;*/
     font-family: 'Frijole', sans-serif;
     margin: 0px;
   }
@@ -11,7 +11,7 @@
   .page {
     width: 100%;
     font-family: "Open Sans", sans-serif;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     }
 
     .hero {
@@ -97,6 +97,14 @@ a.hero__link:hover {
   vertical-align: top;
   text-transform: uppercase;
   color: #737373;
+}
+
+.container__sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #f8f9fa;
 }
 
 .container__menubar {

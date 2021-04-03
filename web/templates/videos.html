@@ -213,12 +213,14 @@ function closeNav() {
     <div class="hero__title">Sactown Lowdown</div>
   </header>
   <div class="container">
+    <div class="container__sticky">
         <ul class="container__menubar">
           <button type="button" class="btn btn-light"><a href="/">HOME</a></button>
           <button type="button" class="btn btn-light"><a href="/sac-locals?args=asc">SORT ASC</a></button>
           <button type="button" class="btn btn-light"><a href="/sac-locals?args=desc">SORT DESC</a></button>
         </ul>
-        <div class="container__title">Local Sacramento Artist Videos</div>        
+        <div class="container__title">Local Sacramento Artist Videos</div> 
+      </div>       
         <div class="container__grid">
             {% for video in videos %}
             <div class="container__grid__col1">
