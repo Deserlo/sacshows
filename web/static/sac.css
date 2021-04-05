@@ -24,6 +24,72 @@
       width:100% !important;
   }
 
+#hero__navbar__mobile {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  padding: 15px 10px 10px 10px;
+  height: 60px;
+  font-size: 30px;
+  /*overflow: hidden;*/
+  zoom: 1;
+  *display: inline;
+  display: -moz-inline-stack;
+  vertical-align: top;
+}
+
+#hero__navbar__btn__mobile {
+
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  /*background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, .95);*/
+  background-color: rgb(248 244 244);
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+}
+
+.overlay a {
+  text-decoration: none;
+  font-size: 3.25rem;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  line-height: 2.25em;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 10%;
+  font-size: 5.25em;
+}
+
+.fa-bars{
+  margin-right: 5px;
+  box-shadow: 0px 8px 16px 0px #242020;
+  padding: 16px;
+  background-color: white;
+  color: #242020;
+  font-size: 1.25em;
+}
 
 .hero__navbar {
 	position: absolute;
@@ -39,11 +105,11 @@
 
 .hero__title {
 	text-align: center;
-	font-size: 44px;
+	font-size: 2.25rem;
 	color: white;
 	font-family: 'Frijole';
 	top: 40%;
-	padding: 15px;
+	padding: 25px;
   letter-spacing: -0.1em;
 	/*transform: skewY(2.5deg);*/
 }
@@ -103,7 +169,7 @@ a.hero__link:hover {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 500;
   background: #f8f9fa;
   padding: 1em 1em;
 }
@@ -111,6 +177,7 @@ a.hero__link:hover {
 .container__sticky__title {
   padding: 0 1.25em;
 }
+
 
 .container__menubar {
   width: 100%;
@@ -121,6 +188,10 @@ a.hero__link:hover {
   justify-content: space-between;*/
   /*color: whitesmoke;
   background-color: rgb(202, 32, 180);*/
+}
+
+.container__event {
+  width: 100%;
 }
 
 /*bootstrap*/
@@ -292,14 +363,22 @@ overflow-x: hidden;
 
 .hero__navbar {
 	position: absolute;
-	left: 60%;
+	left: 0;
 	font-size: 24px;
 	color: white;
-	width: 40%;
+	width: 100%;
   justify-content: space-evenly;
   display: flex;
 	/*transform: skewY(2.5deg);*/
   text-transform: uppercase;
+}
+
+#hero__navbar__mobile {
+  display: none;
+}
+
+.fa-bars{
+  display: none;
 }
 
 a.hero__link:hover {
@@ -394,6 +473,10 @@ a.hero__link:hover {
   background-color: black;
   */
 
+}
+
+.container__event {
+  width: 80%;
 }
 
 .container__submenubar {
