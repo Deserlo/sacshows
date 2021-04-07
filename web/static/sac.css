@@ -248,7 +248,7 @@ a  {
 
 .container__grid__col2, .container__grid__col1 {
   padding: .5em;
-  font-size: 1.5em;
+  font-size: 1.1em;
   /*border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;*/
 }
@@ -276,8 +276,8 @@ a  {
 .more-info {
   display: block;
   background-color: #e64716;
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 6px 8px;
+  border-radius: 1px;
   cursor: pointer;
   border: 1px solid #c03016;
   text-align: center;

@@ -179,7 +179,7 @@ function closeNav() {
               {%- if event["youtube id"] == "" -%}
                   <div class="image-container">
                     <div class="image-card">
-                      <img src="{{event['img link']}}" alt="performer thumbnail" width="78%">
+                     <a href="{{event['img link']}}" target="_blank"><img src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
                     </div>
                   </div>
               </div> 
@@ -187,9 +187,9 @@ function closeNav() {
                 <div class="image-container">
                   <div class="image-card">
                     <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                    <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="78%">
+                    <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="68%">
                     <span class="play-button-icon">
-                      <img src="images/yt_icon_rgb.png" width="30%">
+                      <img src="images/yt_icon_rgb.png" width="20%">
                     </span>
                     </a>
                   </div>
