@@ -177,12 +177,12 @@ function closeNav() {
               {% endif %}  
               Show:{{event.show}}
               {%- if event["youtube id"] == "" -%}
-                  <div class="image-container">
+                <div class="image-container">
                     <div class="image-card">
-                     <a href="{{event['img link']}}" target="_blank"><img src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
+                      <a data-fancybox href="{{event['img link']}}"><img src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
                     </div>
-                  </div>
-              </div> 
+                </div> 
+              </div>
               {%- else -%}
                 <div class="image-container">
                   <div class="image-card">
@@ -195,7 +195,7 @@ function closeNav() {
                   </div>
                 </div>
                   {{event["youtube snippet"]}}
-              </div>
+            </div>
               {% endif %}
               <div class="container__grid__col2">{{event.performers}}<br>{{event.venue}}<br>
                 {% if event.price|length %}
