@@ -19,8 +19,8 @@
       background:linear-gradient(to bottom, rgba(0, 0, 0, 0.52),
        rgba(0, 0, 0, 0.73)), url("images/yonghyun-lee-RhGK4qOwxxw-unsplash.jpg") no-repeat;
       background-size: 110% 200%; 
-      background-position: left;
-      height:160px !important;
+      /*background-position: left;*/
+      height:60px !important;
       width:100% !important;
   }
 
@@ -119,6 +119,7 @@
   margin: auto;
   /*width: 50%;
   background-color: black;*/
+  display: none;
 }
 
 .hero__title:after {
@@ -248,27 +249,27 @@ a  {
 
 .container__grid__col2, .container__grid__col1 {
   padding: .5em;
-  font-size: 1.1em;
+  font-size: 1.5em;
   /*border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;*/
 }
 
 .container__grid__col2 { 
   border-left: 0 ;
-  /*border-right: 2.5px solid black;*/
+  /*border-right: 2.5px solid black;
   border-bottom: 1.5px dashed black;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;*/
   padding-right:  1.5em;
   padding-left: 1.5em;
 }
 
 .image-container {
   position: relative;
-  /*padding: 4px;
-  border: 1px solid black;
+  /*padding: 4px;*/
+  /*border: 1px solid black;
   border-radius: 5px;
-  border-bottom-color: purple;*/
-  max-width: 78%;
+  /*border-bottom-color: purple;*/
+  max-width: 88%;
   height: auto;
   margin: auto;
 }
@@ -387,6 +388,7 @@ a.hero__link:hover {
 
 
 .hero__title {
+  display: block;
 	text-align: center;
 	font-size: 44px;
 	color: white;
@@ -444,7 +446,7 @@ a.hero__link:hover {
 
 .container__grid {
   display: grid;
-  grid-template-columns: 36% 64%;
+  grid-template-columns: 60% 40%;
   padding: 20px;
   grid-row-gap: 1em;
 
@@ -500,8 +502,8 @@ a  {
 
 .container__grid__col1 {
   text-align: center; 
-  font-size: 12px;
-  padding: 5%;
+  font-size: 1.7rem;
+  padding: 1em;
   border-left: 2.5px solid black; 
 }
 
@@ -560,28 +562,30 @@ a  {
 
 
 .container__grid__col2, .container__grid__col1 {
+  padding: 1em;
   border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;
-  padding: 5%;
 }
 
 .container__grid__col2 {
-	font-size: 16px; 
+	font-size: 18px; 
   border-left: 0 ;
   border-right: 2.5px solid black;
   border-bottom-right-radius: 4px;
+  padding:  20% 5%;
 }
 
 .more-info {
     display: block;
     background-color: #e64716;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 8px 12px;
+    /*border-radius: 5px;*/
     cursor: pointer;
     border: 1px solid #c03016;
     text-align: center;
     position: relative;
     /*left: 70%;*/
+    font-size: 1.8rem;
     opacity: .95;
 }
 

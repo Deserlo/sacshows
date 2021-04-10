@@ -187,7 +187,7 @@ function closeNav() {
                 <div class="image-container">
                   <div class="image-card">
                     <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                    <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="68%">
+                    <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="78%">
                     <span class="play-button-icon">
                       <img src="images/yt_icon_rgb.png" width="20%">
                     </span>
@@ -203,8 +203,9 @@ function closeNav() {
                 {% endif %} 
                 {% if event.ages|length %}
                   {{event.ages}}<br>
-                {% endif %} 
-                <button class="more-info"><a href="{{event['tickets link']}} " target="_blank">MORE INFO</a></button>
+                {% endif %}
+                <button class="more-info"><a href="/shows/{{event.uuid}}">MORE INFO</a></button>
+                <!--<button class="more-info"><a href="{{event['tickets link']}} " target="_blank">MORE INFO</a></button>-->
               </div>
             {% endfor %}
         </div>

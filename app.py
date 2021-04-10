@@ -2,9 +2,11 @@ from flask import Flask, render_template, redirect, request, url_for, session
 from pymongo import MongoClient
 from flask import Flask
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 import sys
 import os
 import datetime
+from datetime import timezone
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -71,6 +73,34 @@ def all_free_page():
     query = { "price": "free", 'date': { '$gte': yesterday}}
     free_events = mongo.db.Events.find(query).sort('date', 1)
     return render_template("index.html", title="Free Shows In Sacramento, Ca", events=free_events)
+
+
+@app.route("/shows/<event_id>")
+def show_event_page(event_id):
+    #evt = {"_id": {"$regex": ObjectId("604c3bf30000000000000000")}, "performers": event_id.split("-")[0]}
+    #event = mongo.db.Events.find_one({"_id":{"$gte": ObjectId("604c3bf30000000000000000")}, "performers": event_id.split("-")[0].strip()})
+    #query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, {"venue": "b street theatre (live stream)"}]}
+    event = mongo.db.Events.find_one({"uuid": event_id})
+    '''
+    print("short id", event_id)
+    eg from pp:
+    query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, "performers": event_id.split("-")[0].strip()]}
+    ({_id:{$gte:ObjectId("604c3bf30000000000000000")}})
+    #event = mongo.db.Events.find_one({"_id": ObjectId(event_id)})
+    event = {"_id": {"$regex": ObjectId("604c3bf30000000000000000"))}}
+    604c3bf30000000000000000
+    604c3bf3cffde52b3eb8990e
+    dt = event['_id'].generation_time
+    timestamp = dt.replace(tzinfo=timezone.utc)
+    dummy_id = ObjectId.from_datetime(timestamp)
+    print("dummy id from utc:", dummy_id)
+    evt = mongo.db.Events.find_one({"_id":{"$lt": dummy_id}, "performers": event['performers']})
+    print("evt:", evt)
+    timestamp = dt.replace(tzinfo=timezone.utc).timestamp()
+    print(timestamp)
+    '''
+    return render_template("show.html", title="Live Music Event Details", event=event)
+
 
 
 @app.route("/submit")
