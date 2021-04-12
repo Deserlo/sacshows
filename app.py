@@ -42,19 +42,34 @@ def index():
 
 @app.route("/search")
 def search_by_date():
-    date_str = request.values.get("date")
-    if date_str != "":
-        date = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+    date_from = request.values.get("date-from")
+    date_to = request.values.get("date-to")
+    if date_from != "" and date_to != "":
+        from_date = datetime.datetime.strptime(date_from, '%Y-%m-%d')
+        to_date = datetime.datetime.strptime(date_to, '%Y-%m-%d') 
+        query_range = { "date": { '$gte': from_date, '$lte': to_date} }
+        search_results = mongo.db.Events.find(query_range).sort('date', 1)
+        num_results = search_results.count()
+        return render_template("index.html", title=str(num_results) + " Shows from " + date_from + " to " + date_to + " In Sacramento, Ca", events=search_results)
+    elif date_from != "" and date_to == "":
+        from_date = datetime.datetime.strptime(date_from, '%Y-%m-%d')
+        query_range = { "date": { '$gte': from_date} }
+        search_results = mongo.db.Events.find(query_range).sort('date', 1)
+        num_results = search_results.count()
+        return render_template("index.html", title=str(num_results) + " Shows from " + date_from +  " In Sacramento, Ca", events=search_results)
+    elif date_from == "" and date_to != "":
+        date = datetime.datetime.strptime(date_to, '%Y-%m-%d')
         query = { "date": date }
-        search_results = mongo.db.Events.find(query)
-        return render_template("index.html", title="Shows on " + date_str + " In Sacramento, Ca", events=search_results)
+        search_results = mongo.db.Events.find(query).sort('date', 1)
+        num_results = search_results.count()
+        return render_template("index.html", title=str(num_results) + " Shows on " + date_to +  " In Sacramento, Ca", events=search_results)
     else:
-        print("date string empty")
         title = "Upcoming Shows By Date In Sacramento, Ca"
         today = datetime.datetime.now()
         yesterday = today - datetime.timedelta(days=1.5)
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
-        return render_template('index.html', title=title, events=all_events)
+        num_results = all_events.count()
+        return render_template('index.html', title=str(num_results) + " " + title, events=all_events)
 
 
 @app.route("/all-ages")

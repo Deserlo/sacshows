@@ -817,3 +817,7 @@ a  {
 }
 
 /*End footer*/
+
+.form-control {
+  margin: 0 .5rem;
+}
