@@ -466,6 +466,7 @@ a.hero__link:hover {
 .container__menubar {
   width: 100%;
   list-style: none;
+  text-align: left;
   /*
   display: flex;
   justify-content: space-between;
