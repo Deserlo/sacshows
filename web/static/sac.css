@@ -184,6 +184,7 @@ a.hero__link:hover {
   list-style: none;
   padding-left: 3%;
   padding-right: 3%;
+  text-align: center;
   /*display: flex;
   justify-content: space-between;*/
   /*color: whitesmoke;
@@ -296,7 +297,7 @@ a  {
 
 .btn {
   padding: 1rem .6rem;
-  font-size: 1.35rem;
+  font-size: 1.65rem;
 }
 
   #sidebar{
@@ -828,23 +829,27 @@ input[type="date"] {
   position: relative;
 }
 
+/*
 /* create a new arrow, because we are going to mess up the native one
-see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. 
 input[type="date"]:after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900; 
   content: "\f073";
   color: #555;
-  padding: 0 5px;
+  padding: 0 2px;
+  font-size: 1.2rem;
+  display:none;
 }
 
 /* change color of symbol on hover 
 input[type="date"]:hover:after {
   color: #bf1400;
 }
-/*
 
-/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+
+ make the native arrow invisible and stretch it over the whole field 
+so you can click anywhere in the input field to trigger the native datepicker
 input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 0;
@@ -856,6 +861,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: transparent;
   background: transparent;
 }
+*/
 
 /* adjust increase/decrease button */
 input[type="date"]::-webkit-inner-spin-button {
@@ -865,4 +871,15 @@ input[type="date"]::-webkit-inner-spin-button {
 /* adjust clear button */
 input[type="date"]::-webkit-clear-button {
    z-index: 1;
+}
+
+
+input[type="date"].form-control, input[type=datetime-local].form-control, input[type=month].form-control, input[type=time].form-control {
+    /*line-height: 1.3rem;*/
+    text-align: right;
+    -webkit-appearance: button;
+    -moz-appearance:    button;
+    appearance:         button;
+    
+
 }
