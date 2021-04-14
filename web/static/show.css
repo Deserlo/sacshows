@@ -88,7 +88,7 @@
   padding: 16px;
   background-color: white;
   color: #242020;
-  font-size: 1.95rem;
+  font-size: 1.55rem;
 }
 
 .hero__navbar {
@@ -243,24 +243,55 @@ a  {
 
 }
 
+.container__grid__list {
+  display: grid; 
+  grid-template-columns: 36% 64%;
+  margin-bottom: 4rem;
+  font-size: .6rem;
+  text-transform: uppercase;
+}
+
+.container__grid__list__title {
+  padding: 2.2rem 0.5rem 0.5rem;
+  text-align: left;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.container__grid__list__thumbnail {
+  width:68%;
+}
+
 .container__grid::before {
 	display: none;
 }
 
 .container__grid__col2, .container__grid__col1 {
-  padding: .5em;
-  font-size: 1.5em;
+  padding: 1rem;
+  font-size: 1rem;
   /*border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;*/
 }
 
-.container__grid__col2 { 
+.container__grid__list__col1{
+  text-align: center;
+  padding: 1rem;
+}
+
+.container__grid__list__col2, .container__grid__list__col1 {
+  padding: .5rem;
+  font-size: .6rem;
+  border-top: 1px dashed black;
+  /*border-bottom: 1px dashed black;*/
+}
+
+.container__grid__list__col2 { 
   border-left: 0 ;
   /*border-right: 2.5px solid black;
   border-bottom: 1.5px dashed black;
   border-bottom-right-radius: 4px;*/
-  padding-right:  1.5em;
-  padding-left: 1.5em;
+  padding-right:  1.5rem;
+  padding-left: 1.5rem;
 }
 
 .image-container {
@@ -269,7 +300,7 @@ a  {
   /*border: 1px solid black;
   border-radius: 5px;
   /*border-bottom-color: purple;*/
-  max-width: 88%;
+  /*max-width: 88%;*/
   height: auto;
   margin: auto;
 }
@@ -507,13 +538,39 @@ a  {
   border-left: 2.5px solid black; 
 }
 
+.container__grid__list__title {
+  font-size: 3rem;
+
+}
+
+.container__grid__list__col1{
+  font-size: 14px;
+  text-align: center; 
+  padding: 1em;
+  /*border-left: 2.5px solid black; */
+}
+
+.container__grid__list__col2 {
+  font-size: 16px;
+  border-left: 0;
+  /*border-right: 1.5px solid black;
+  border-bottom-right-radius: 4px;*/
+  /* padding: 20% 5%;*/
+}
+
+.container__grid__list__thumbnail {
+  width: 40%;
+}
+
+
+
 
 .image-container {
     position: relative;
     padding: 4px;
-    border: 1px solid black;
+    /*border: 1px solid black;
     border-radius: 5px;
-    border-bottom-color: purple;
+    border-bottom-color: purple;*/
     width: 100%;
     margin: auto;
     overflow: hidden;

@@ -96,6 +96,16 @@ def show_event_page(event_id):
     #event = mongo.db.Events.find_one({"_id":{"$gte": ObjectId("604c3bf30000000000000000")}, "performers": event_id.split("-")[0].strip()})
     #query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, {"venue": "b street theatre (live stream)"}]}
     event = mongo.db.Events.find_one({"uuid": event_id})
+    new_events = just_listed()
+    return render_template("show.html", title="Live Music Event Details", event=event, new_events=new_events)
+
+
+def just_listed(): 
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=1.5)
+    #new_events = mongo.db.Events.find(sort=[( '_id', -1 ,{'date': {'$gte': yesterday}})]).limit(10)
+    query = {'date': {"$gte": yesterday}}
+    new_events = mongo.db.Events.find(query).sort('_id', -1).limit(10)
     '''
     print("short id", event_id)
     eg from pp:
@@ -114,8 +124,7 @@ def show_event_page(event_id):
     timestamp = dt.replace(tzinfo=timezone.utc).timestamp()
     print(timestamp)
     '''
-    return render_template("show.html", title="Live Music Event Details", event=event)
-
+    return new_events
 
 
 @app.route("/submit")
@@ -140,3 +149,4 @@ if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
     #app.run()
+    
