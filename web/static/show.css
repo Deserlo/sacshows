@@ -64,7 +64,7 @@
 
 .overlay a {
   text-decoration: none;
-  font-size: 3.25rem;
+  font-size: 2rem;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -79,7 +79,7 @@
   position: absolute;
   top: 0;
   right: 6%;
-  font-size: 5.25rem;
+  font-size: 4.25rem;
 }
 
 .fa-bars{

@@ -15,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css?family=Frijole|Open+Sans|Permanent+Marker&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../show.css" type="text/css" media="screen" charset="utf-8"/>
 <link rel="yt stylesheet" type="text/css" href="../styles.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
 <!-- Add fancybox3 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
@@ -189,15 +190,17 @@ function closeNav() {
                   {%- if event["youtube id"] == "" -%}
                       <div class="image-container">
                         <div class="image-card">
-                         <img src="{{event['img link']}}" alt="performer thumbnail" width="88%">
+                            <a data-fancybox href="{{event['img link']}}">
+                                <img class="w3-border" style="padding: .2rem;" src="{{event['img link']}}" alt="performer thumbnail" width="78%">
+                            </a>
                         </div>
                       </div>
                   </div> 
                   {%- else -%}
                     <div class="image-container">
                       <div class="image-card">
-                        <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                        <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="88%">
+                    <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
+                        <img class="w3-border" style="padding: .2rem;" src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="88%">
                         <span class="play-button-icon">
                           <img src="../images/yt_icon_rgb.png" width="25%">
                         </span>
@@ -216,12 +219,54 @@ function closeNav() {
                     {% endif %}
                     <button class="more-info"><a href="{{event['tickets link']}} " target="_blank">Event Link</a></button>
                   </div>
+            </div>
         </div>
-    </div>
+
+    <h2 class="container__grid__list__title">More Shows🗲Just Listed</h2> 
+    <div class="container__grid__list">
+        {%- for new_event in new_events -%} 
+        <div class="container__grid__list__col1">{{new_event.date.strftime('%a, %b %d %Y')}}<br>  
+        {%- if new_event["youtube id"] == "" -%}
+            <div class="image-container">
+              <div class="image-card">
+                <a data-fancybox href="{{new_event['img link']}}">
+                    <img class="container__grid__list__thumbnail w3-border" style="padding: .1rem;" src="{{new_event['img link']}}" alt="performer thumbnail">
+                </a>
+              </div>
+            </div>
+        </div> 
+        {%- else -%}
+          <div class="image-container">
+            <div class="image-card">
+              <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{new_event['youtube id']}}">
+              <img class="w3-border" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{new_event['youtube id']}}/mqdefault.jpg" width="90%" alt="youtube thumbnail">
+              <span class="play-button-icon">
+                <img src="../images/yt_icon_rgb.png" width="20%">
+              </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="container__grid__list__col2">{{new_event.performers}}<br>{{new_event.venue}}<br>
+          {% if new_event.price|length %}
+            {{new_event.price}}
+          {% endif %} 
+          {% if new_event.ages|length %}
+            / {{new_event.ages}}<br>
+          {% endif %}
+          <!--<button class="more-info"><a href="{{new_event['tickets link']}} " target="_blank">Event Link</a></button>-->
+          <button class="more-info"><a href="/shows/{{new_event.uuid}}">MORE INFO</a></button>
+        </div>
+        {% endfor %}
+</div>
+
+<!--
     <div id="sidebar">
         <a class="twitter-timeline" data-height="500" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div><!--end sidebar-->
+    </div>
+-->
 
 
 <!-- Site footer -->

@@ -97,6 +97,24 @@ def show_event_page(event_id):
     #query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, {"venue": "b street theatre (live stream)"}]}
     event = mongo.db.Events.find_one({"uuid": event_id})
     new_events = just_listed()
+    '''
+    print("short id", event_id)
+    eg from pp:
+    query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, "performers": event_id.split("-")[0].strip()]}
+    ({_id:{$gte:ObjectId("604c3bf30000000000000000")}})
+    #event = mongo.db.Events.find_one({"_id": ObjectId(event_id)})
+    event = {"_id": {"$regex": ObjectId("604c3bf30000000000000000"))}}
+    604c3bf30000000000000000
+    604c3bf3cffde52b3eb8990e
+    dt = event['_id'].generation_time
+    timestamp = dt.replace(tzinfo=timezone.utc)
+    dummy_id = ObjectId.from_datetime(timestamp)
+    print("dummy id from utc:", dummy_id)
+    evt = mongo.db.Events.find_one({"_id":{"$lt": dummy_id}, "performers": event['performers']})
+    print("evt:", evt)
+    timestamp = dt.replace(tzinfo=timezone.utc).timestamp()
+    print(timestamp)
+    '''
     return render_template("show.html", title="Live Music Event Details", event=event, new_events=new_events)
 
 
@@ -127,6 +145,7 @@ def just_listed():
     return new_events
 
 
+
 @app.route("/submit")
 def submit_event():
     return render_template("submit.html", title="Submit a show to Sactown Lowdown listings")
@@ -149,4 +168,3 @@ if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
     #app.run()
-    

@@ -15,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css?family=Frijole|Open+Sans|Permanent+Marker&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="sac.css" type="text/css" media="screen" charset="utf-8"/>
 <link rel="yt stylesheet" type="text/css" href="../styles.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
 <!-- Add fancybox3 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
@@ -150,8 +151,6 @@ function closeNav() {
           <button type="button" class="btn btn-light"><a href="/">ALL SHOWS</a></button>
           <button type="button" class="btn btn-light"><a href="/all-ages">ALL AGES</a></button>
           <button type="button" class="btn btn-light"><a href="/all-free">FREE</a></button>
-          <!--<button type="button" class="btn btn-light"><a href="/?args=asc">EARLIEST</a></button>
-          <button type="button" class="btn btn-light"><a href="/?args=desc">LATEST</a></button>-->
         </ul>
           <div class="container__submenubar">
             <div class="container__date">
@@ -167,7 +166,7 @@ function closeNav() {
                           <form action="/" class='input-group date' method="POST">
                               <input type='date' name="date-from"  class="form-control"/>
                               <input type='date' name="date-to"  class="form-control"/>
-                              <button type="submit" class="btn btn-info">Date Filter</button>
+                              <button type="submit" style="font-size: 1.1rem; padding: 0 1.25rem;" class="btn btn-info">Date Filter</button>
                           </form>
                       </div>
                   </div>
@@ -186,7 +185,7 @@ function closeNav() {
               {%- if event["youtube id"] == "" -%}
                 <div class="image-container">
                     <div class="image-card">
-                      <a data-fancybox href="{{event['img link']}}"><img src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
+                      <a data-fancybox href="{{event['img link']}}"><img class="w3-border" style="padding: .1rem;" src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
                     </div>
                 </div> 
               </div>
@@ -194,7 +193,7 @@ function closeNav() {
                 <div class="image-container">
                   <div class="image-card">
                     <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                    <img src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="78%">
+                    <img class="w3-border" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="78%">
                     <span class="play-button-icon">
                       <img src="images/yt_icon_rgb.png" width="20%">
                     </span>
