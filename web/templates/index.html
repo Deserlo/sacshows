@@ -185,7 +185,7 @@ function closeNav() {
               {%- if event["youtube id"] == "" -%}
                 <div class="image-container">
                     <div class="image-card">
-                      <a data-fancybox href="{{event['img link']}}"><img class="w3-border" style="padding: .1rem;" src="{{event['img link']}}" alt="performer thumbnail" width="50%"></a>
+                      <a data-fancybox href="{{event['img link']}}"><img class="w3-border container__grid__col1__thumbnail" style="padding: .1rem;" src="{{event['img link']}}" alt="performer thumbnail"></a>
                     </div>
                 </div> 
               </div>
@@ -193,7 +193,7 @@ function closeNav() {
                 <div class="image-container">
                   <div class="image-card">
                     <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                    <img class="w3-border" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="78%">
+                    <img class="w3-border container__grid__col1__yt_thumbnail" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" >
                     <span class="play-button-icon">
                       <img src="images/yt_icon_rgb.png" width="20%">
                     </span>
@@ -233,7 +233,7 @@ function closeNav() {
 <div id="sidebar">
         <a class="twitter-timeline" data-height="800" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div><!--end sidebar-->
+      </div><!--end sidebar-->
 </div>
 <!-- Site footer -->
 <footer class="site-footer">

@@ -222,7 +222,7 @@ function closeNav() {
             </div>
         </div>
 
-    <h2 class="container__grid__list__title">More Shows🗲Just Listed</h2> 
+    <h2 class="container__grid__list__title">More Shows/Just Listed</h2> 
     <div class="container__grid__list">
         {%- for new_event in new_events -%} 
         <div class="container__grid__list__col1">{{new_event.date.strftime('%a, %b %d %Y')}}<br>  
@@ -239,7 +239,7 @@ function closeNav() {
           <div class="image-container">
             <div class="image-card">
               <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{new_event['youtube id']}}">
-              <img class="w3-border" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{new_event['youtube id']}}/mqdefault.jpg" width="90%" alt="youtube thumbnail">
+              <img class="w3-border container__grid__col1__yt_thumbnail" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{new_event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail">
               <span class="play-button-icon">
                 <img src="../images/yt_icon_rgb.png" width="20%">
               </span>
@@ -255,8 +255,7 @@ function closeNav() {
           {% if new_event.ages|length %}
             / {{new_event.ages}}<br>
           {% endif %}
-          <!--<button class="more-info"><a href="{{new_event['tickets link']}} " target="_blank">Event Link</a></button>-->
-          <button class="more-info"><a href="/shows/{{new_event.uuid}}">MORE INFO</a></button>
+          <button class="container__grid__list__more__info__btn"><a href="/shows/{{new_event.uuid}}">MORE INFO</a></button>
         </div>
         {% endfor %}
 </div>
