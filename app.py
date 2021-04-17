@@ -27,13 +27,13 @@ def index():
     query = request.args.get("args", "")
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=1.5)
-    title = "Upcoming Shows By Date In Sacramento, Ca"
+    title = "All Upcoming Shows By Date"
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
-        title = "Earliest Upcoming Shows In Sacramento, Ca"
+        title = "Earliest Upcoming Shows"
     elif query == "desc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', -1)
-        title = "Latest Upcoming Shows In Sacramento, Ca"
+        title = "Latest Upcoming Shows"
     else:
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title=title, events=all_events)
@@ -50,21 +50,21 @@ def search_by_date():
         query_range = { "date": { '$gte': from_date, '$lte': to_date} }
         search_results = mongo.db.Events.find(query_range).sort('date', 1)
         num_results = search_results.count()
-        return render_template("index.html", title=str(num_results) + " Shows from " + date_from + " to " + date_to + " In Sacramento, Ca", events=search_results)
+        return render_template("index.html", title=str(num_results) + " Shows from " + date_from + " to " + date_to, events=search_results)
     elif date_from != "" and date_to == "":
         from_date = datetime.datetime.strptime(date_from, '%Y-%m-%d')
         query_range = { "date": { '$gte': from_date} }
         search_results = mongo.db.Events.find(query_range).sort('date', 1)
         num_results = search_results.count()
-        return render_template("index.html", title=str(num_results) + " Shows from " + date_from +  " In Sacramento, Ca", events=search_results)
+        return render_template("index.html", title=str(num_results) + " Shows from " + date_from, events=search_results)
     elif date_from == "" and date_to != "":
         date = datetime.datetime.strptime(date_to, '%Y-%m-%d')
         query = { "date": date }
         search_results = mongo.db.Events.find(query).sort('date', 1)
         num_results = search_results.count()
-        return render_template("index.html", title=str(num_results) + " Shows on " + date_to +  " In Sacramento, Ca", events=search_results)
+        return render_template("index.html", title=str(num_results) + " Shows on " + date_to, events=search_results)
     else:
-        title = "Upcoming Shows By Date In Sacramento, Ca"
+        title = "Upcoming Shows By Date"
         today = datetime.datetime.now()
         yesterday = today - datetime.timedelta(days=1.5)
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
@@ -78,7 +78,7 @@ def all_ages_page():
     yesterday = today - datetime.timedelta(days=1.5)
     query = { "ages": "all ages", 'date': { '$gte': yesterday}}
     all_ages_events = mongo.db.Events.find(query).sort('date', 1)
-    return render_template("index.html", title="All Ages Shows In Sacramento, Ca", events=all_ages_events)
+    return render_template("index.html", title="All Ages Shows", events=all_ages_events)
 
 
 @app.route("/all-free")
@@ -87,7 +87,7 @@ def all_free_page():
     yesterday = today - datetime.timedelta(days=1.5)
     query = { "price": "free", 'date': { '$gte': yesterday}}
     free_events = mongo.db.Events.find(query).sort('date', 1)
-    return render_template("index.html", title="Free Shows In Sacramento, Ca", events=free_events)
+    return render_template("index.html", title="Free Shows", events=free_events)
 
 
 @app.route("/shows/<event_id>")
@@ -97,24 +97,6 @@ def show_event_page(event_id):
     #query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, {"venue": "b street theatre (live stream)"}]}
     event = mongo.db.Events.find_one({"uuid": event_id})
     new_events = just_listed()
-    '''
-    print("short id", event_id)
-    eg from pp:
-    query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, "performers": event_id.split("-")[0].strip()]}
-    ({_id:{$gte:ObjectId("604c3bf30000000000000000")}})
-    #event = mongo.db.Events.find_one({"_id": ObjectId(event_id)})
-    event = {"_id": {"$regex": ObjectId("604c3bf30000000000000000"))}}
-    604c3bf30000000000000000
-    604c3bf3cffde52b3eb8990e
-    dt = event['_id'].generation_time
-    timestamp = dt.replace(tzinfo=timezone.utc)
-    dummy_id = ObjectId.from_datetime(timestamp)
-    print("dummy id from utc:", dummy_id)
-    evt = mongo.db.Events.find_one({"_id":{"$lt": dummy_id}, "performers": event['performers']})
-    print("evt:", evt)
-    timestamp = dt.replace(tzinfo=timezone.utc).timestamp()
-    print(timestamp)
-    '''
     return render_template("show.html", title="Live Music Event Details", event=event, new_events=new_events)
 
 
@@ -123,26 +105,14 @@ def just_listed():
     yesterday = today - datetime.timedelta(days=1.5)
     #new_events = mongo.db.Events.find(sort=[( '_id', -1 ,{'date': {'$gte': yesterday}})]).limit(10)
     query = {'date': {"$gte": yesterday}}
-    new_events = mongo.db.Events.find(query).sort('_id', -1).limit(10)
-    '''
-    print("short id", event_id)
-    eg from pp:
-    query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, "performers": event_id.split("-")[0].strip()]}
-    ({_id:{$gte:ObjectId("604c3bf30000000000000000")}})
-    #event = mongo.db.Events.find_one({"_id": ObjectId(event_id)})
-    event = {"_id": {"$regex": ObjectId("604c3bf30000000000000000"))}}
-    604c3bf30000000000000000
-    604c3bf3cffde52b3eb8990e
-    dt = event['_id'].generation_time
-    timestamp = dt.replace(tzinfo=timezone.utc)
-    dummy_id = ObjectId.from_datetime(timestamp)
-    print("dummy id from utc:", dummy_id)
-    evt = mongo.db.Events.find_one({"_id":{"$lt": dummy_id}, "performers": event['performers']})
-    print("evt:", evt)
-    timestamp = dt.replace(tzinfo=timezone.utc).timestamp()
-    print(timestamp)
-    '''
+    new_events = mongo.db.Events.find(query).sort('_id', -1).limit(16)
     return new_events
+
+
+@app.route("/just-listed")
+def get_newly_listed_events():
+    new_stuff = just_listed()
+    return render_template("index.html", title="Newly Listed Shows", events=new_stuff)
 
 
 
@@ -167,4 +137,5 @@ def all_locals():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+    #app.run(host="192.168.56.1", port=port)
     #app.run()

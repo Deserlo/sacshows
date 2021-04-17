@@ -207,9 +207,19 @@ a.hero__link:hover {
 }
 
 .form-control {
-  font-size: .85rem;
-  height: 3.2rem;
-  padding: .5rem 0rem;
+  font-size: 1.1rem;
+  /* height: 2.5rem; */
+  padding: .9rem 0rem;
+}
+}
+
+group>.custom-select, .input-group>.form-control, .input-group>.form-control-plaintext {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 40%;
+  margin-bottom: 0;
 }
 
 .container__submenubar {
@@ -218,8 +228,8 @@ a.hero__link:hover {
 
 
 .container__date {
-  margin-left: 3%;
-  margin-right: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 
@@ -312,8 +322,8 @@ a  {
 }
 
 .btn {
-  padding: .6em;
-  font-size: 1.125rem;
+  padding: .2rem;
+  font-size: .85rem;
 }
 
   #sidebar{
@@ -960,11 +970,12 @@ input[type="date"]::-webkit-clear-button {
 
 
 input[type="date"].form-control, input[type=datetime-local].form-control, input[type=month].form-control, input[type=time].form-control {
-    /*line-height: 1.3rem;*/
-    text-align: right;
-    -webkit-appearance: button;
-    -moz-appearance:    button;
-    appearance:         button;
+  /*line-height: 1.3rem; */
+  text-align: center;
+  padding: .2rem;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
     
 
 }

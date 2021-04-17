@@ -131,17 +131,17 @@ function closeNav() {
       <div id="hero__navbar__btn__mobile" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
-          <a class="hero__link active" href="/">Shows</a>
-          <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">Socials</a>
+          <a class="hero__link active" href="/">SHOWS</a>
+          <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">SOCIALS</a>
           <a class="hero__link" href="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" target="_blank">Submit A Show</a>
-          <a class="hero__link" href="/sac-locals">Sacramento Artist Vids</a>
+          <a class="hero__link" href="/sac-locals">SACRAMENTO ARTIST VIDS</a>
         </div>
     </nav>
     <nav class="hero__navbar">
-          <a class="hero__link active" href="/">Shows</a>
-          <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">Socials</a>
+          <a class="hero__link active" href="/">SHOWS</a>
+          <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">SOCIALS</a>
           <a class="hero__link" href="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" target="_blank">Submit A Show</a>
-          <a class="hero__link" href="/sac-locals">Sacramento Artist Vids</a>
+          <a class="hero__link" href="/sac-locals">SACRAMENTO ARTIST VIDS</a>
     </nav>
     <div class="hero__title">Sactown Lowdown</div>
   </header>
@@ -151,6 +151,7 @@ function closeNav() {
           <button type="button" class="btn btn-light"><a href="/">ALL SHOWS</a></button>
           <button type="button" class="btn btn-light"><a href="/all-ages">ALL AGES</a></button>
           <button type="button" class="btn btn-light"><a href="/all-free">FREE</a></button>
+          <button type="button" class="btn btn-light"><a href="/just-listed">JUST LISTED</a></button>
         </ul>
           <div class="container__submenubar">
             <div class="container__date">
@@ -163,10 +164,11 @@ function closeNav() {
                           <input type='date' name="date-to"  class="form-control"/>
                           <button type="submit" class="btn btn-info">Date Filter</button>
                       </form>-->
+                      <h3 style="font-size:.8rem; margin: .25rem;">Date Range</h3>
                           <form action="/" class='input-group date' method="POST">
                               <input type='date' name="date-from"  class="form-control"/>
                               <input type='date' name="date-to"  class="form-control"/>
-                              <button type="submit" style="font-size: 1.1rem; padding: 0 1.25rem;" class="btn btn-info">Date Filter</button>
+                              <button type="submit" style="font-size: .8rem; padding: .3rem 0; width:100%" class="btn btn-info">Search</button>
                           </form>
                       </div>
                   </div>
@@ -211,24 +213,10 @@ function closeNav() {
                   {{event.ages}}<br>
                 {% endif %}
                 <button class="more-info"><a href="/shows/{{event.uuid}}">MORE INFO</a></button>
-                <!--<button class="more-info"><a href="{{event['tickets link']}} " target="_blank">MORE INFO</a></button>-->
               </div>
             {% endfor %}
         </div>
     </div>
-
-<!--
-<script src="../scripts.js" type="text/javascript"></script>
-<script type="text/javascript">
-      $(function () {
-          $('.datepicker').datepicker({
-              format: 'LT',
-              startDate: '-3d',
-              todayBtn: true
-          });
-      });
-  </script>
--->
 
 <div id="sidebar">
         <a class="twitter-timeline" data-height="800" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
@@ -249,6 +237,7 @@ function closeNav() {
           <li><a href="/">All Shows</a></li>
           <li><a href="/all-ages">All Ages</a></li>
           <li><a href="/all-free">Free Shows</a></li>
+          <li><a href="/all-free">Just Listed</a></li>
           <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" target="_blank">Submit A Show</a></li>
         </ul>
       </div>
