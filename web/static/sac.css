@@ -173,7 +173,7 @@ a.hero__link:hover {
   top: 0;
   z-index: 500;
   background: #f8f9fa;
-  padding: 1em 1em;
+  padding: .5rem 1rem;
 }
 
 .container__sticky__title {
@@ -201,8 +201,8 @@ a.hero__link:hover {
 
 /*bootstrap*/
 .form-group {
-  margin-top: 1rem;
-  margin-bottom: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
   font-size: 1rem;
 }
 
@@ -322,7 +322,7 @@ a  {
 }
 
 .btn {
-  padding: .2rem;
+  padding: 0 .3rem;
   font-size: .85rem;
 }
 
