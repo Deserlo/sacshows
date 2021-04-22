@@ -205,12 +205,14 @@ function closeNav() {
                   {{event["youtube snippet"]}}
             </div>
               {% endif %}
-              <div class="container__grid__col2">{{event.performers}}<br>{{event.venue}}<br>
+              <div class="container__grid__col2">
+                <div class="performer">{{event.performers}}</div>
+                <div class="venue">{{event.venue}}</div>
                 {% if event.price|length %}
-                  {{event.price}}<br>
+                  <div>{{event.price}}</div>
                 {% endif %} 
                 {% if event.ages|length %}
-                  {{event.ages}}<br>
+                  <div>{{event.ages}}</div>
                 {% endif %}
                 <button class="more-info"><a href="/shows/{{event.uuid}}">MORE INFO</a></button>
               </div>

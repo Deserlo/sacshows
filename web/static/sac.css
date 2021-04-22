@@ -247,6 +247,9 @@ a  {
 .container__grid__col1 {
   text-align: center; 
   padding: 1em;
+  line-height: 1.2rem;
+  font-weight: 600;
+  letter-spacing: .1rem;
   /*border-left: 2.5px solid black; */
 }
 
@@ -264,7 +267,8 @@ a  {
 
 .container__grid__col2, .container__grid__col1 {
   padding: .5em;
-  font-size: .8rem;
+  font-size: 1rem;
+  text-align: center;
   /*border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;*/
 }
@@ -276,6 +280,7 @@ a  {
   border-bottom-right-radius: 4px;
   padding-right:  1.5em;
   padding-left: 1.5em;
+  letter-spacing: .1rem;
 }
 
 .image-container {
@@ -290,18 +295,39 @@ a  {
 }
 
 .container__grid__col1__thumbnail {
-  width: 42%;
-
+  /*width: 42%;*/
+  width: 70vw;
+  height: auto;
 }
 
 .container__grid__col1__yt_thumbnail{
-  width: 64%;
-
+  /*width: 64%;*/
+  width: 78vw;
+  height: auto;
 }
 
+.performer {
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+}
+
+.venue {
+  font-size: 1.2rem;
+  margin-top: .5rem;
+  margin-bottom: .1rem;
+  text-align: center;
+  letter-spacing: .05rem;
+  line-height: 1.5rem;
+}
 
 .more-info {
-  display: block;
+  justify-content: center;
   background-color: #e64716;
   padding: 6px 8px;
   border-radius: 1px;
@@ -310,7 +336,7 @@ a  {
   text-align: center;
   position: relative;
   color: #f3f5f6;
-  /*left: 70%;*/
+  /*left: 37%;*/
   opacity: .95;
 }
 
@@ -671,12 +697,11 @@ a  {
 }
 
 .more-info {
-    display: block;
+    justify-content: center;
     background-color: #e64716;
     padding: 6px 8px;
     cursor: pointer;
     border: 1px solid #c03016;
-    text-align: center;
     position: relative;
     opacity: .95;
 }
