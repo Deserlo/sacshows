@@ -269,6 +269,7 @@ a  {
   padding: .5em;
   font-size: 1rem;
   text-align: center;
+  overflow: auto;
   /*border-top: 2.5px solid black;
   border-bottom: 2.5px solid black;*/
 }
