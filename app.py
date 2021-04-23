@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 import sys
 import os
 import datetime
+from datetime import date, timedelta
 from datetime import timezone
 from dotenv import load_dotenv
 load_dotenv()
@@ -46,7 +47,8 @@ def search_by_date():
     date_to = request.values.get("date-to")
     if date_from != "" and date_to != "":
         from_date = datetime.datetime.strptime(date_from, '%Y-%m-%d')
-        to_date = datetime.datetime.strptime(date_to, '%Y-%m-%d') 
+        to_date = datetime.datetime.strptime(date_to, '%Y-%m-%d')
+        to_date += timedelta(days=1)
         query_range = { "date": { '$gte': from_date, '$lte': to_date} }
         search_results = mongo.db.Events.find(query_range).sort('date', 1)
         num_results = search_results.count()
