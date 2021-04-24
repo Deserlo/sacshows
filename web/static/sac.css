@@ -308,22 +308,32 @@ a  {
 }
 
 .performer {
-  font-family: 'Nanum Pen Script',  sans-serif;
-  font-size: 2.25rem;
+  font-family: 'Nanum Pen Script', sans-serif;
+  font-size: 2rem;
   line-height: 1.5rem;
-  margin: 0;
-  text-align: center;
+  margin-right: 2.5rem;
+  margin-left: 2.5rem;
   text-transform: uppercase;
 }
 
 .venue {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-top: .5rem;
   margin-bottom: .1rem;
   text-align: center;
   letter-spacing: .05rem;
   line-height: 1.5rem;
+  /* color: #17a2b8; */
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+}
+
+.venue a {
+  
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  
 }
 
 .more-info {
