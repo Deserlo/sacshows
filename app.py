@@ -27,7 +27,7 @@ def index():
         return search_by_date()
     query = request.args.get("args", "")
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=.3)
+    yesterday = today - datetime.timedelta(days=.5)
     title = "All Upcoming Shows By Date"
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
