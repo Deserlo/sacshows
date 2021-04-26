@@ -68,7 +68,7 @@ def search_by_date():
     else:
         title = "Upcoming Shows By Date"
         today = datetime.datetime.now()
-        yesterday = today - datetime.timedelta(days=1.5)
+        yesterday = today - datetime.timedelta(days=.5)
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
         num_results = all_events.count()
         return render_template('index.html', title=str(num_results) + " " + title, events=all_events)
@@ -77,7 +77,7 @@ def search_by_date():
 @app.route("/all-ages")
 def all_ages_page():
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=1.5)
+    yesterday = today - datetime.timedelta(days=.5)
     query = { "ages": "all ages", 'date': { '$gte': yesterday}}
     all_ages_events = mongo.db.Events.find(query).sort('date', 1)
     return render_template("index.html", title="All Ages Shows", events=all_ages_events)
@@ -86,7 +86,7 @@ def all_ages_page():
 @app.route("/all-free")
 def all_free_page():
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=1.5)
+    yesterday = today - datetime.timedelta(days=.5)
     query = { "price": "free", 'date': { '$gte': yesterday}}
     free_events = mongo.db.Events.find(query).sort('date', 1)
     return render_template("index.html", title="Free Shows", events=free_events)
@@ -104,10 +104,10 @@ def show_event_page(event_id):
 
 def just_listed(): 
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=1.5)
+    yesterday = today - datetime.timedelta(days=.5)
     #new_events = mongo.db.Events.find(sort=[( '_id', -1 ,{'date': {'$gte': yesterday}})]).limit(10)
     query = {'date': {"$gte": yesterday}}
-    new_events = mongo.db.Events.find(query).sort('_id', -1).limit(16)
+    new_events = mongo.db.Events.find(query).sort('_id', -1).limit(20)
     return new_events
 
 
