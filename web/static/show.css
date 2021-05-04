@@ -325,6 +325,12 @@ a  {
   opacity: .95;
 }
 
+
+.venue a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
 .more-info {
   display: block;
   background-color: #e64716;
