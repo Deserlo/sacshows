@@ -94,9 +94,6 @@ def all_free_page():
 
 @app.route("/shows/<event_id>")
 def show_event_page(event_id):
-    #evt = {"_id": {"$regex": ObjectId("604c3bf30000000000000000")}, "performers": event_id.split("-")[0]}
-    #event = mongo.db.Events.find_one({"_id":{"$gte": ObjectId("604c3bf30000000000000000")}, "performers": event_id.split("-")[0].strip()})
-    #query = {"$and": [{'_id': {"$gte": ObjectId("604c3bf30000000000000000")}}, {"venue": "b street theatre (live stream)"}]}
     event = mongo.db.Events.find_one({"uuid": event_id})
     new_events = just_listed()
     return render_template("show.html", title="Live Music Event Details", event=event, new_events=new_events)
@@ -105,7 +102,6 @@ def show_event_page(event_id):
 def just_listed(): 
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=.5)
-    #new_events = mongo.db.Events.find(sort=[( '_id', -1 ,{'date': {'$gte': yesterday}})]).limit(10)
     query = {'date': {"$gte": yesterday}}
     new_events = mongo.db.Events.find(query).sort('_id', -1).limit(20)
     return new_events
@@ -139,5 +135,3 @@ def all_locals():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-    #app.run(host="192.168.56.1", port=port)
-    #app.run()
