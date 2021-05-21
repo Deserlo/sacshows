@@ -309,7 +309,7 @@ a  {
 
 /*video grid*/
 .container__grid__vids__col1__yt_thumbnail {
-  width: 33vw;
+  width: 30vw;
   height: auto;
 }
 
@@ -341,7 +341,9 @@ a  {
 
 .container__grid__vids {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-row-gap: .5rem;
+  grid-column-gap: .6rem;
+  grid-template-columns: 30% 30% 30%;
 }
 
 
