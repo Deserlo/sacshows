@@ -24,67 +24,6 @@ MONGO_URI = os.getenv("MONGO_URI")
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
 
-@app.route("/add", methods=["POST", "GET"])
-def add():
-    if request.method == "POST":
-        result = request.form
-        print(result)
-        img_link = result['img_link']
-        if result['venue'] == '':
-            #create new venue and insert into Venues coll. 
-            add_venue(result)
-            v_link = result['venue url']
-            v_name = result['venue text']
-            if img_link == '':
-                img_link = result['logo image']
-        else:
-            v = json.loads(result['venue'])
-            v_link = v['link']
-            v_name = v['venue']
-            if img_link == '':
-                img_link = v['logo image']
-        new_show_post = {
-            "venue calendar": v_link,
-            "price": result['price'].lower(),
-            "ages": result['ages'].lower(),
-            "img link": img_link,
-            "date": datetime.datetime.strptime(result['event_date'], '%Y-%m-%dT%H:%M'),
-            "performers": result['performers'].lower(),
-            "show": result['show'].lower(),
-            "venue": v_name.lower(),
-            "youtube id": "",
-            "youtube snippet": "",
-            "doors": result['doors'].lower(),
-            "tickets link": result["tickets_link"],
-            "uuid": shortuuid.uuid()[:11],
-            "title": result['title'].lower(),
-            "comments": result['comments'].lower()
-        }  
-        print(new_show_post) 
-        mongo.db.Events.insert(new_show_post)
-        return render_template("add_show_result.html", result=new_show_post)
-    else:
-        venue_names = mongo.db.Venues.find({})
-        return render_template("add_show.html", venue_names=venue_names)
-
-def add_venue(venue_info):
-    new_venue_post = {
-        'venue': venue_info['venue text'].lower(),
-        'link': venue_info['venue url'],
-        'logo image': venue_info['logo image'],
-        'building image': venue_info['building image'],
-        'instagram': venue_info['instagram'],
-        'facebook': venue_info['facebook'],
-        'city': venue_info['city'].lower(),
-        'neighborhood': venue_info['neighborhood'].lower(),
-        'address': venue_info['address'].lower(),
-        'google map link': venue_info['google map link'],
-        'phone': venue_info['phone'],
-        'comments': venue_info['comments'].lower()
-    }
-    print(new_venue_post)
-    mongo.db.Venues.insert(new_venue_post)
-
 
 @app.route("/", methods=["POST", "GET"])
 def index():
