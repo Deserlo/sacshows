@@ -43,7 +43,11 @@ def index():
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title=title, events=all_events)
 
-
+@app.route("/venues")
+def venues():
+    all_venues = mongo.db.Venues.find({})
+    return render_template("venues_list.html", venues=all_venues)
+    
 
 @app.route("/venue/<name>")
 def venue_page(name):
@@ -54,7 +58,7 @@ def venue_page(name):
     venue_info = mongo.db.Venues.find_one({"venue": name})
     venue_events = mongo.db.Events.find(query).sort('date', 1)
     num_results = venue_events.count()
-    return render_template('venue(show copy).html', title=str(num_results), venue_info=venue_info, venue_events=venue_events)
+    return render_template('venue.html', title=str(num_results), venue_info=venue_info, venue_events=venue_events)
 
 
 @app.route("/search")
