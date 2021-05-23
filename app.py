@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from flask import Flask
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 import sys
 import os
 import datetime
@@ -10,6 +11,8 @@ from datetime import date, timedelta
 from datetime import timezone
 from dotenv import load_dotenv
 load_dotenv()
+import shortuuid
+import json
 
 app = Flask(__name__,
             static_url_path='', 
@@ -20,6 +23,68 @@ app = Flask(__name__,
 MONGO_URI = os.getenv("MONGO_URI")
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
+
+@app.route("/add", methods=["POST", "GET"])
+def add():
+    if request.method == "POST":
+        result = request.form
+        print(result)
+        img_link = result['img_link']
+        if result['venue'] == '':
+            #create new venue and insert into Venues coll. 
+            add_venue(result)
+            v_link = result['venue url']
+            v_name = result['venue text']
+            if img_link == '':
+                img_link = result['logo image']
+        else:
+            v = json.loads(result['venue'])
+            v_link = v['link']
+            v_name = v['venue']
+            if img_link == '':
+                img_link = v['logo image']
+        new_show_post = {
+            "venue calendar": v_link,
+            "price": result['price'].lower(),
+            "ages": result['ages'].lower(),
+            "img link": img_link,
+            "date": datetime.datetime.strptime(result['event_date'], '%Y-%m-%dT%H:%M'),
+            "performers": result['performers'].lower(),
+            "show": result['show'].lower(),
+            "venue": v_name.lower(),
+            "youtube id": "",
+            "youtube snippet": "",
+            "doors": result['doors'].lower(),
+            "tickets link": result["tickets_link"],
+            "uuid": shortuuid.uuid()[:11],
+            "title": result['title'].lower(),
+            "comments": result['comments'].lower()
+        }  
+        print(new_show_post) 
+        mongo.db.Events.insert(new_show_post)
+        return render_template("add_show_result.html", result=new_show_post)
+    else:
+        venue_names = mongo.db.Venues.find({})
+        return render_template("add_show.html", venue_names=venue_names)
+
+def add_venue(venue_info):
+    new_venue_post = {
+        'venue': venue_info['venue text'].lower(),
+        'link': venue_info['venue url'],
+        'logo image': venue_info['logo image'],
+        'building image': venue_info['building image'],
+        'instagram': venue_info['instagram'],
+        'facebook': venue_info['facebook'],
+        'city': venue_info['city'].lower(),
+        'neighborhood': venue_info['neighborhood'].lower(),
+        'address': venue_info['address'].lower(),
+        'google map link': venue_info['google map link'],
+        'phone': venue_info['phone'],
+        'comments': venue_info['comments'].lower()
+    }
+    print(new_venue_post)
+    mongo.db.Venues.insert(new_venue_post)
+
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -39,6 +104,18 @@ def index():
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title=title, events=all_events)
 
+
+
+@app.route("/venue/<name>")
+def venue_page(name):
+    name = name.lower()
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=.5)
+    query = { "venue": name, 'date': {'$gte': yesterday}  }
+    venue_info = mongo.db.Venues.find_one({"venue": name})
+    venue_events = mongo.db.Events.find(query).sort('date', 1)
+    num_results = venue_events.count()
+    return render_template('venue(show copy).html', title=str(num_results), venue_info=venue_info, venue_events=venue_events)
 
 
 @app.route("/search")
@@ -129,8 +206,6 @@ def all_locals():
     else:
         all_videos = mongo.db.Videos.find().sort('artist', 1)
     return render_template("videos.html", title="Sacramento's Local Music Artists", videos=all_videos)
-
-
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

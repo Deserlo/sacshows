@@ -207,7 +207,7 @@ function closeNav() {
               {% endif %}
               <div class="container__grid__col2">
                 <div class="performer">{{event.performers}}</div>
-                <div class="venue"><a href="{{event['venue calendar']}}">{{event.venue}}</a></div>
+                <div class="venue"><a href="/venue/{{ event.venue }}">{{event.venue}}</a></div>
                 {% if event.price|length %}
                   <div>{{event.price}}</div>
                 {% endif %} 
@@ -221,9 +221,13 @@ function closeNav() {
     </div>
 
 <div id="sidebar">
-        <a class="twitter-timeline" data-height="800" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </div><!--end sidebar-->
+      <div style="font-family: 'Open Sans'; text-transform: uppercase;">Sactown Artist Playlist<p>Created by <a style=" text-decoration: underline; text-decoration-style: dotted;" href="https://www.instagram.com/justloyalbrand_on_ig/">Justloyal Brand</a></p></div>
+      <iframe src="https://open.spotify.com/embed/playlist/2qKh3ZXiyHMMdGd1Rwfh5G"  height="580" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      
+      <div>The Feed</div>
+      <a class="twitter-timeline"  data-height="500" data-theme="dark" data-link-color="#FAB81E" href="https://twitter.com/SactownLowdown?ref_src=twsrc%5Etfw">Tweets by SactownLowdown</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div><!--end sidebar-->
 </div>
 <!-- Site footer -->
 <footer class="site-footer">

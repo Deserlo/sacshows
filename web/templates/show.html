@@ -249,7 +249,8 @@ function closeNav() {
           </div>
         </div>
         {% endif %}
-        <div class="container__grid__list__col2">{{new_event.performers}}<br>{{new_event.venue}}<br>
+        <div class="container__grid__list__col2">{{new_event.performers}}<br>
+          <div class="venue"><a href="/venue/{{ new_event.venue }}">{{new_event.venue}}</a></div>
           {% if new_event.price|length %}
             {{new_event.price}}
           {% endif %} 
