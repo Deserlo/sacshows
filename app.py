@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from flask import Flask
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 import sys
 import os
 import datetime
@@ -10,6 +11,8 @@ from datetime import date, timedelta
 from datetime import timezone
 from dotenv import load_dotenv
 load_dotenv()
+import shortuuid
+import json
 
 app = Flask(__name__,
             static_url_path='', 
@@ -20,6 +23,7 @@ app = Flask(__name__,
 MONGO_URI = os.getenv("MONGO_URI")
 app.config["MONGO_URI"] = MONGO_URI
 mongo = PyMongo(app)
+
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -39,6 +43,22 @@ def index():
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
     return render_template('index.html', title=title, events=all_events)
 
+@app.route("/venues")
+def venues():
+    all_venues = mongo.db.Venues.find({})
+    return render_template("venues_list.html", venues=all_venues)
+    
+
+@app.route("/venue/<name>")
+def venue_page(name):
+    name = name.lower()
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=.5)
+    query = { "venue": name, 'date': {'$gte': yesterday}  }
+    venue_info = mongo.db.Venues.find_one({"venue": name})
+    venue_events = mongo.db.Events.find(query).sort('date', 1)
+    num_results = venue_events.count()
+    return render_template('venue.html', title=str(num_results), venue_info=venue_info, venue_events=venue_events)
 
 
 @app.route("/search")
@@ -129,8 +149,6 @@ def all_locals():
     else:
         all_videos = mongo.db.Videos.find().sort('artist', 1)
     return render_template("videos.html", title="Sacramento's Local Music Artists", videos=all_videos)
-
-
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

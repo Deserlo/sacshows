@@ -149,16 +149,16 @@ function closeNav() {
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
           <a class="hero__link active" href="/">Shows</a>
-          <a class="hero__link" href="/venues">Venues</a>
+          <a class="hero__link active" href="/venues">Venues</a>
           <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">Socials</a>
           <a class="hero__link" href="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" target="_blank">Submit A Show</a>
           <a class="hero__link" href="/sac-locals">Sacramento Artist Vids</a>
         </div>
     </nav>
     <nav class="hero__navbar">
-      <a class = "hero__link active" href="/">Shows</a>
-      <a class = "hero__link" href="/venues">Venues</a>
-      <a class= "hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">Socials</a>
+      <a class="hero__link active" href="/">Shows</a>
+      <a class="hero__link" href="/venues">Venues</a>
+      <a class="hero__link" href="https://linktr.ee/sactownlowdown" target="_blank">Socials</a>
       <a class="hero__link" href="https://docs.google.com/forms/d/e/1FAIpQLSc8B0yFikW9o4O5GT2l1VJIVUzy6-IMNtqlt1jVn7I_mmNfVA/viewform?embedded=true" target="_blank">Submit A Show</a>
       <a class="hero__link" href="/sac-locals">Sacramento Artist Vids</a>
       </nav>
@@ -168,25 +168,20 @@ function closeNav() {
     <div class="container__sticky">
         <ul class="container__menubar">
           <button type="button" class="btn btn-light"><a href="/">HOME</a></button>
-          <button type="button" class="btn btn-light"><a href="/sac-locals?args=asc">SORT ASC</a></button>
-          <button type="button" class="btn btn-light"><a href="/sac-locals?args=desc">SORT DESC</a></button>
         </ul>
-        <div class="container__title">Local Sacramento Artist Videos</div> 
+        <div class="container__title">Venues</div> 
       </div>       
         <div class="container__grid__vids" >
-            {% for video in videos %}
+            {% for v in venues %}
             <div class="container__grid__vids__col1">
             <div class="image-container__vids">
               <div class="image-card">
-                <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{video['video_id']}}">
-                <img class="w3-border container__grid__vids__col1__yt_thumbnail" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{video['video_id']}}/mqdefault.jpg" alt="youtube thumbnail" >
-                <span class="play-button-icon">
-                  <img src="images/yt_icon_rgb.png" width="20%">
-                </span>
+                <a href="/venue/{{ v['venue'] }}">
+                    <img class="w3-border" style="padding: .2rem;" src="{{v['logo image']}}" alt="image of venue" width="78%">
                 </a>
               </div>
             </div>
-              {{video["artist"]}}<br>{{video["video_title"]}}
+            <a href="/venue/{{ v['venue'] }}">{{ v['venue'] }}</a>
             </div>
             {% endfor %}
           </div>
@@ -208,6 +203,7 @@ function closeNav() {
         <h6>About</h6>
         <p class="text-justify">SactownLowdown.com</p>
       </div>
+
       <div class="col-xs-6 col-md-3">
         <h6>Shows</h6>
         <ul class="footer-links">

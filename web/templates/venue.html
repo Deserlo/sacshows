@@ -184,56 +184,33 @@ function closeNav() {
               <h3 class="container__sticky__title">{{title}}</h3>
             </div>--> <!--end sticky-->
             <div class="container__grid">
-                  <div class="container__grid__col1">{{event.date.strftime('%a, %b %d %Y')}}<br>
-                  {% if event.doors|length %}
-                    Doors:{{event.doors}} 
-                  {% endif %}  
-                  Show:{{event.show}}
-                  {%- if event["youtube id"] == "" -%}
+                  <div class="container__grid__col1">
                       <div class="image-container">
                         <div class="image-card">
-                            <a data-fancybox href="{{event['img link']}}">
-                                <img class="w3-border" style="padding: .2rem;" src="{{event['img link']}}" alt="performer thumbnail" width="78%">
+                            <a data-fancybox href="{{venue_info['logo image']}}">
+                                <img class="w3-border" style="padding: .2rem;" src="{{venue_info['logo image']}}" alt="performer thumbnail" width="78%">
                             </a>
                         </div>
                       </div>
                   </div> 
-                  {%- else -%}
-                    <div class="image-container">
-                      <div class="image-card">
-                    <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{event['youtube id']}}">
-                        <img class="w3-border" style="padding: .2rem;" src="https://i.ytimg.com/vi/{{event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail" width="88%">
-                        <span class="play-button-icon">
-                          <img src="../images/yt_icon_rgb.png" width="25%">
-                        </span>
-                        </a>
-                      </div>
-                    </div>
-                      {{event["youtube snippet"]}}
-                  </div>
-                  {% endif %}
-                  <div class="container__grid__col2">{{event.performers}}
-                    <div class="venue"><a href="{{event['venue calendar']}}">{{event.venue}}</a></div>
-                    {% if event.price|length %}
-                      {{event.price}}<br>
-                    {% endif %} 
-                    {% if event.ages|length %}
-                      {{event.ages}}<br>
-                    {% endif %}
-                    <button class="more-info"><a href="{{event['tickets link']}} " target="_blank">Event Link</a></button>
+                  <div class="container__grid__col2">
+                    <p><a style=" text-decoration: underline; text-decoration-style: dotted;" href="{{ venue_info['link'] }}">{{ venue_info['venue'] }}</a></p>
+                    <p>City: {{venue_info['city']}}</p>
+                    <p>Neighborhood: {{venue_info['neighborhood']}}</p>
+                    <p><a style=" text-decoration: underline; text-decoration-style: dotted;" href="{{ venue_info['google map link'] }}">Google Maps</a></p>
                   </div>
             </div>
         </div>
 
-    <h2 class="container__grid__list__title">More Shows/Just Listed</h2> 
+    <h2 class="container__grid__list__title">{{ title }} Upcoming Live Music Events At This Venue</h2> 
     <div class="container__grid__list">
-        {%- for new_event in new_events -%} 
-        <div class="container__grid__list__col1">{{new_event.date.strftime('%a, %b %d %Y')}}<br>  
-        {%- if new_event["youtube id"] == "" -%}
+        {%- for ven_event in venue_events -%} 
+        <div class="container__grid__list__col1">{{ven_event.date.strftime('%a, %b %d %Y')}}<br>  
+        {%- if ven_event["youtube id"] == "" -%}
             <div class="image-container">
               <div class="image-card">
-                <a data-fancybox href="{{new_event['img link']}}">
-                    <img class="container__grid__list__thumbnail w3-border" style="padding: .1rem;" src="{{new_event['img link']}}" alt="performer thumbnail">
+                <a data-fancybox href="{{ven_event['img link']}}">
+                    <img class="container__grid__list__thumbnail w3-border" style="padding: .1rem;" src="{{ven_event['img link']}}" alt="performer thumbnail">
                 </a>
               </div>
             </div>
@@ -241,8 +218,8 @@ function closeNav() {
         {%- else -%}
           <div class="image-container">
             <div class="image-card">
-              <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{new_event['youtube id']}}">
-              <img class="w3-border container__grid__col1__yt_thumbnail" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{new_event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail">
+              <a class="container__grid__col1__thumbnail" data-fancybox href="https://www.youtube.com/watch?v={{ven_event['youtube id']}}">
+              <img class="w3-border container__grid__col1__yt_thumbnail" style="padding: .1rem;" src="https://i.ytimg.com/vi/{{ven_event['youtube id']}}/mqdefault.jpg" alt="youtube thumbnail">
               <span class="play-button-icon">
                 <img src="../images/yt_icon_rgb.png" width="20%">
               </span>
@@ -251,15 +228,14 @@ function closeNav() {
           </div>
         </div>
         {% endif %}
-        <div class="container__grid__list__col2">{{new_event.performers}}<br>
-          <div class="venue"><a href="/venue/{{ new_event.venue }}">{{new_event.venue}}</a></div>
-          {% if new_event.price|length %}
-            {{new_event.price}}
+        <div class="container__grid__list__col2">{{ven_event.performers}}<br>{{ven_event.venue}}<br>
+          {% if ven_event.price|length %}
+            {{ven_event.price}}
           {% endif %} 
-          {% if new_event.ages|length %}
-            / {{new_event.ages}}<br>
+          {% if ven_event.ages|length %}
+            / {{ven_event.ages}}<br>
           {% endif %}
-          <button class="container__grid__list__more__info__btn"><a href="/shows/{{new_event.uuid}}">MORE INFO</a></button>
+          <button class="container__grid__list__more__info__btn"><a href="/shows/{{ven_event.uuid}}">MORE INFO</a></button>
         </div>
         {% endfor %}
 </div>
