@@ -38,9 +38,7 @@
   vertical-align: top;
 }
 
-#hero__navbar__btn__mobile {
 
-}
 
 .overlay {
   height: 100%;
@@ -348,13 +346,18 @@ a  {
 
 
 
-.performer {
+.performer, .sidebar-title {
   font-family: 'Nanum Pen Script', sans-serif;
   font-size: 2rem;
   line-height: 1.5rem;
   margin-right: 2.5rem;
   margin-left: 2.5rem;
   text-transform: uppercase;
+}
+
+.sidebar-title {
+  margin-left: 0;
+  margin-top: .75rem;
 }
 
 .venue {
@@ -407,8 +410,7 @@ a  {
     display: none;
   }
 
-
-}
+  
 
 @media (min-width: 576px){
 .col-sm-6 {
@@ -1027,9 +1029,7 @@ a  {
 
 /*End footer*/
 
-.form-control {
-  /*margin: 0 .5rem;*/
-}
+
 
 
 
