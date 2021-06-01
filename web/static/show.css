@@ -38,10 +38,6 @@
   vertical-align: top;
 }
 
-#hero__navbar__btn__mobile {
-
-}
-
 .overlay {
   height: 100%;
   width: 100%;
@@ -237,10 +233,8 @@ a  {
 
 .container__grid {
   display: grid;
-  /*grid-template-columns: 36% 64%;
-  padding: 20px;*/
-  /*grid-row-gap: 1em;*/
-
+  color: black;
+  font-family: monospace;
 }
 
 .container__grid__list {
@@ -508,6 +502,8 @@ a.hero__link:hover {
   grid-row-gap: 1em;
 
 }
+
+
 
 .container__grid::before {
 	display: none;
