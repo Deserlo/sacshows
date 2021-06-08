@@ -45,7 +45,7 @@ def index():
 
 @app.route("/venues")
 def venues():
-    all_venues = mongo.db.Venues.find({})
+    all_venues = mongo.db.Venues.find({}).sort('venue', 1)
     return render_template("venues_list.html", venues=all_venues)
     
 
