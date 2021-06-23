@@ -256,7 +256,11 @@ function closeNav() {
         </div>
         {% endif %}
         <div class="container__grid__list__col2">{{new_event.performers}}<br>
+          {%- if new_event['venue calendar'] == '' -%}
+          <div class="venue">{{new_event.venue}}</div>
+          {%- else -%}
           <div class="venue"><a href="/venue/{{ new_event.venue }}">{{new_event.venue}}</a></div>
+          {% endif %}
           {% if new_event.price|length %}
             {{new_event.price}}
           {% endif %} 
