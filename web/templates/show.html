@@ -188,7 +188,9 @@ function closeNav() {
                   {% if event.doors|length %}
                     Doors:{{event.doors}} 
                   {% endif %}  
-                  Show:{{event.show}}
+                  {% if event.show|length %}
+                    Show:{{event.show}}
+                  {% endif %} 
                   {%- if event["youtube id"] == "" -%}
                       <div class="image-container">
                         <div class="image-card">
