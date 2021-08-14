@@ -32,7 +32,8 @@ def index():
     query = request.args.get("args", "")
     today = datetime.datetime.now()
     yesterday = today - datetime.timedelta(days=.5)
-    title = "All Upcoming Shows By Date"
+    title = "Upcoming Shows By Date"
+    page_size = 25
     if query == "asc":
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
         title = "Earliest Upcoming Shows"
@@ -40,7 +41,7 @@ def index():
         all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', -1)
         title = "Latest Upcoming Shows"
     else:
-        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
+        all_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1).limit(page_size)
     return render_template('index.html', title=title, events=all_events)
 
 @app.route("/venues")
@@ -131,6 +132,22 @@ def just_listed():
 def get_newly_listed_events():
     new_stuff = just_listed()
     return render_template("index.html", title="Newly Listed Shows", events=new_stuff)
+
+
+@app.route("/display", methods=["POST", "GET"])
+def display():
+    page_size = request.args.get('results')
+    today = datetime.datetime.now()
+    yesterday = today - datetime.timedelta(days=.5)
+    title = "Displaying " + page_size + " results"
+    if page_size == "all":
+        displayed_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1)
+    else:
+        displayed_events = mongo.db.Events.find({'date': {'$gte': yesterday}}).sort('date', 1).limit(int(page_size))
+    return render_template("index.html", title=title, events=displayed_events)
+
+
+
 
 
 

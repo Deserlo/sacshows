@@ -230,6 +230,11 @@ function closeNav() {
               </div>
             {% endfor %}
         </div>
+        {% if title == "Upcoming Shows By Date" or "Displaying" in title %}
+        <button><a href="/display?results=50">Show 50</a></button>
+        <button><a href="/display?results=100">Show 100</a></button>
+        <button><a href="/display?results=all">Show All</a></button>
+      {% endif %}
     </div>
 
 <div id="sidebar">
