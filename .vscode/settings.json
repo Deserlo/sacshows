@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "c:\\Users\\18054\\MyProjects\\SactownLiveV3PY3\\env\\Scripts\\python.exe"
+    "python.pythonPath": "c:\\Users\\18054\\MyProjects\\SactownLiveV3PY3\\env\\Scripts\\python.exe",
+    "python.formatting.provider": "black"
 }

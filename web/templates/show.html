@@ -97,31 +97,6 @@ function closeNav() {
               <div class="hero__title">Sactown Lowdown</div>
         </header>
         <div class="container"> 
-            <!--
-          <div class="container__sticky">
-              <ul class="container__menubar">
-                <button type="button" class="btn btn-light"><a href="/">ALL SHOWS</a></button>
-                <button type="button" class="btn btn-light"><a href="/all-ages">ALL AGES</a></button>
-                <button type="button" class="btn btn-light"><a href="/all-free">FREE</a></button>
-                <button type="button" class="btn btn-light"><a href="/?args=asc">EARLIEST</a></button>
-                <button type="button" class="btn btn-light"><a href="/?args=desc">LATEST</a></button>
-              </ul>
-                <div class="container__submenubar">
-                  <div class="container__date">
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <form action="/" class='input-group date' method="POST" class='datepicker'>
-                                    <input type='date' name="date" class="form-control" />
-                                    <button type="submit" class="btn btn-info">Date Filter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-              </div>
-              <h3 class="container__sticky__title">{{title}}</h3>
-            </div>--> <!--end sticky-->
             <div class="container__grid">
                   <div class="container__grid__col1">{{event.date.strftime('%a, %b %d %Y')}}<br>
                   {% if event.doors|length %}
