@@ -54,7 +54,7 @@ def venues():
 def venue_page(name):
     name = name.lower()
     today = datetime.datetime.now()
-    yesterday = today - datetime.timedelta(days=.5)
+    yesterday = today - datetime.timedelta(days=.9)
     query = { "venue": name, 'date': {'$gte': yesterday}  }
     venue_info = mongo.db.Venues.find_one({"venue": name})
     venue_events = mongo.db.Events.find(query).sort('date', 1)
